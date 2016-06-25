@@ -4,5 +4,9 @@
     "keywords": ["util", "functional", "server", "client", "browser"],
     "author": "janosv",
     "contributors": [],
-    "dependencies": {}
+    "dependencies": {},
+    "scripts": {
+        "start": "node main.js"
+    }
 }
+
