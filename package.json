@@ -1,12 +1,26 @@
 {
-    "name": "testapp2",
-    "version": "1.0.0",
-    "keywords": ["util", "functional", "server", "client", "browser"],
-    "author": "janosv",
-    "contributors": [],
-    "dependencies": {},
-    "scripts": {
-        "start": "node main.js"
-    }
+  "name": "node-js-sample",
+  "version": "0.2.0",
+  "description": "A sample Node.js app using Express 4",
+  "main": "index.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "engines": {
+    "node": "4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/janosvajda/testapp2.git"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "author": "Janos Vajda",
+  "contributors": [
+    "Janos Vajda <vajdajanos@gmail.com>"
+  ],
+  "license": "MIT"
 }
-
