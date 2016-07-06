@@ -13,17 +13,21 @@ var io = io.listen(server);
 app.use("/js", express.static(__dirname + '/easyrtc/js'));
 app.use("/images", express.static(__dirname + '/easyrtc/images'));
 app.use("/css", express.static(__dirname + '/easyrtc/css'));
+app.use(express.static(__dirname + '/public'));
 
 server.listen(process.env.PORT || 8888);
 
-app.use(express.static(__dirname + '/public'));
 console.log("Server running on 127.0.0.1:8080");
 
 // array of all lines drawn
 var line_history = [];
+var easyrtcServer=null;
+
 
 // event-handler for new incoming connections
 io.on('connection', function (socket) {
+
+   easyrtcServer = easyrtc.listen(app, socketServer, {'apiEnable':'true'});
 
    // first send the history to the new client
    for (var i in line_history) {
@@ -39,13 +43,6 @@ io.on('connection', function (socket) {
    });
 });
 
-
-//Initiate a video call
-app.get('/video', function(req, res){
-	var easyrtcServer = easyrtc.listen(app, socketServer, {'apiEnable':'true'});
-        res.sendfile(__dirname + '/easyrtc/demo_multiparty.html');
-
-});
 
 
 var socketServer = io.listen(server2);
