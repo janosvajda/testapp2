@@ -6,9 +6,10 @@ var express = require('express'),
 var easyrtc = require("easyrtc");           // EasyRTC external module
     
 var server = http.createServer(app);
-var server2 = http.createServer(app);
+
 
 var io = io.listen(server);
+
 
 app.use("/js", express.static(__dirname + '/easyrtc/js'));
 app.use("/images", express.static(__dirname + '/easyrtc/images'));
@@ -16,6 +17,10 @@ app.use("/css", express.static(__dirname + '/easyrtc/css'));
 app.use(express.static(__dirname + '/public'));
 
 server.listen(process.env.PORT || 8888);
+
+var webServer = app.listen(process.env.PORT || 8080);
+var socketServer = io.listen(webServer);
+
 
 console.log("Server running on 127.0.0.1:8080");
 
@@ -27,6 +32,7 @@ var easyrtcServer=null;
 // event-handler for new incoming connections
 io.on('connection', function (socket) {
 
+   
    easyrtcServer = easyrtc.listen(app, socketServer, {'apiEnable':'true'});
 
    // first send the history to the new client
@@ -45,4 +51,3 @@ io.on('connection', function (socket) {
 
 
 
-var socketServer = io.listen(server2);
